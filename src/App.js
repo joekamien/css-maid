@@ -13,10 +13,17 @@ import {
   ButtonsRow,
 } from './components';
 
+const whitespaceType = Object.freeze({
+  space: ' ',
+  tab: '\t',
+});
+
 class App extends Component {
   state = {
     userStyles: '',
     formattedStyles: '',
+    numberOfIndents: 2,
+    indentType: whitespaceType.space,
   };
 
   handleInput = e => {
@@ -26,7 +33,8 @@ class App extends Component {
   formatCSS = () => {
     if (this.state.userStyles.trim() === '') return false;
 
-    const formattedStyles = parseCSS(this.state.userStyles);
+    const indentString = this.state.indentType.repeat(this.state.numberOfIndents);
+    const formattedStyles = parseCSS(this.state.userStyles, indentString);
     this.setState({ formattedStyles });
   };
 
