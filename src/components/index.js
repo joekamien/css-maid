@@ -63,7 +63,7 @@ export const Button = styled('button')`
   border: 3px solid #ffffff90;
   margin: 0 1rem 0;
 
-  background: transparent;
+  background: ${props => props.selected ? '#ffffff60' : 'transparent'};
   color: #fff;
 
   text-shadow: 1px 1px 2px black;
