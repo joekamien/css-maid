@@ -44,6 +44,12 @@ class App extends Component {
     this.setState({ formattedStyles });
   };
 
+  changeIndentType = indentType => {
+    this.setState({ indentType });
+  };
+  selectSpaces = () => this.changeIndentType(whitespaceType.space);
+  selectTabs = () => this.changeIndentType(whitespaceType.tab);
+
   render() {
     return (
       <Wrapper>
@@ -67,6 +73,9 @@ class App extends Component {
           </CopyToClipboard>
 
           <input type="text" value={this.state.numberOfIndents} onChange={this.handleNumberOfIndentsChange} />
+          <Button onClick={this.selectSpaces}>Spaces</Button>
+          <Button onClick={this.selectTabs}>Tabs</Button>
+          
         </ButtonsRow>
 
         <GithubCorner
