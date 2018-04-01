@@ -50,6 +50,16 @@ class App extends Component {
   selectSpaces = () => this.changeIndentType(whitespaceType.space);
   selectTabs = () => this.changeIndentType(whitespaceType.tab);
 
+  incrementNumberOfIndents = () => {
+    const updater = prevState => ({ numberOfIndents: prevState.numberOfIndents + 1 });
+    this.setState(updater, this.formatCSS);
+  };
+
+  decrementNumberOfIndents = () => {
+    const updater = prevState => ({ numberOfIndents: Math.max(0, prevState.numberOfIndents - 1) });
+    this.setState(updater, this.formatCSS);
+  };
+
   render() {
     return (
       <Wrapper>
@@ -73,6 +83,8 @@ class App extends Component {
           </CopyToClipboard>
 
           <input type="text" value={this.state.numberOfIndents} onChange={this.handleNumberOfIndentsChange} />
+          <Button onClick={this.incrementNumberOfIndents}>+</Button>
+          <Button onClick={this.decrementNumberOfIndents}>-</Button>
           <Button onClick={this.selectSpaces} selected={this.state.indentType === whitespaceType.space}>Spaces</Button>
           <Button onClick={this.selectTabs} selected={this.state.indentType === whitespaceType.tab}>Tabs</Button>
           
