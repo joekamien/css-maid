@@ -45,7 +45,7 @@ class App extends Component {
   };
 
   changeIndentType = indentType => {
-    this.setState({ indentType });
+    this.setState({ indentType }, this.formatCSS);
   };
   selectSpaces = () => this.changeIndentType(whitespaceType.space);
   selectTabs = () => this.changeIndentType(whitespaceType.tab);
