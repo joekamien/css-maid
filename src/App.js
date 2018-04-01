@@ -82,7 +82,7 @@ class App extends Component {
             <Button>Copy to clipboard</Button>
           </CopyToClipboard>
 
-          <NumericInput min={0} onChange={this.handleNumberOfIndentsChange} value={this.state.numberOfIndents} />
+          <NumericInput style={{ input: { fontSize: '36px', width: '100px' }}} min={0} onChange={this.handleNumberOfIndentsChange} value={this.state.numberOfIndents} />
           <Button onClick={this.selectSpaces} selected={this.state.indentType === whitespaceType.space}>Spaces</Button>
           <Button onClick={this.selectTabs} selected={this.state.indentType === whitespaceType.tab}>Tabs</Button>
           
