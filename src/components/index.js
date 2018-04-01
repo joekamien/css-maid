@@ -1,4 +1,5 @@
 import styled from 'react-emotion';
+import NumericInput from 'react-numeric-input';
 
 export const Wrapper = styled('div')`
   height: 100%;
@@ -91,3 +92,9 @@ export const Container = styled('div')`
 
   justify-content: space-between;
 `;
+
+export const StyledNumericInput = styled(NumericInput)`
+  font-size: 36px !important;
+  width: 100px;
+`;
+

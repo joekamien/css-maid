@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { injectGlobal } from 'react-emotion';
 import GithubCorner from 'react-github-corner';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import NumericInput from 'react-numeric-input';
 
 import { parseCSS } from './utils/parser';
 import {
@@ -12,6 +11,7 @@ import {
   Button,
   Container,
   ButtonsRow,
+  StyledNumericInput,
 } from './components';
 
 const whitespaceType = Object.freeze({
@@ -82,7 +82,7 @@ class App extends Component {
             <Button>Copy to clipboard</Button>
           </CopyToClipboard>
 
-          <NumericInput style={{ input: { fontSize: '36px', width: '100px' }}} min={0} onChange={this.handleNumberOfIndentsChange} value={this.state.numberOfIndents} />
+          <StyledNumericInput min={0} onChange={this.handleNumberOfIndentsChange} value={this.state.numberOfIndents} />
           <Button onClick={this.selectSpaces} selected={this.state.indentType === whitespaceType.space}>Spaces</Button>
           <Button onClick={this.selectTabs} selected={this.state.indentType === whitespaceType.tab}>Tabs</Button>
           
