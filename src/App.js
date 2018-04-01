@@ -30,6 +30,12 @@ class App extends Component {
     this.setState({ userStyles: e.target.value });
   };
 
+  handleNumberOfIndentsChange = e => {
+    const parsedValue = parseInt(e.target.value, 10);
+    if (isNaN(parsedValue) || parsedValue < 0) return;
+    this.setState({ numberOfIndents: parsedValue });
+  };
+
   formatCSS = () => {
     if (this.state.userStyles.trim() === '') return false;
 
@@ -59,6 +65,8 @@ class App extends Component {
           <CopyToClipboard text={this.state.formattedStyles}>
             <Button>Copy to clipboard</Button>
           </CopyToClipboard>
+
+          <input type="text" value={this.state.numberOfIndents} onChange={this.handleNumberOfIndentsChange} />
         </ButtonsRow>
 
         <GithubCorner
