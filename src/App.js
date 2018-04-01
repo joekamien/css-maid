@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { injectGlobal } from 'react-emotion';
 import GithubCorner from 'react-github-corner';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import NumericInput from 'react-numeric-input';
 
 import { parseCSS } from './utils/parser';
 import {
@@ -30,10 +31,9 @@ class App extends Component {
     this.setState({ userStyles: e.target.value });
   };
 
-  handleNumberOfIndentsChange = e => {
-    const parsedValue = parseInt(e.target.value, 10);
-    if (isNaN(parsedValue) || parsedValue < 0) return;
-    this.setState({ numberOfIndents: parsedValue });
+  handleNumberOfIndentsChange = valueAsNumber => {
+    if (!isFinite(valueAsNumber) || valueAsNumber < 0) return;
+    this.setState({ numberOfIndents: valueAsNumber }, this.formatCSS);
   };
 
   formatCSS = () => {
@@ -82,9 +82,7 @@ class App extends Component {
             <Button>Copy to clipboard</Button>
           </CopyToClipboard>
 
-          <input type="text" value={this.state.numberOfIndents} onChange={this.handleNumberOfIndentsChange} />
-          <Button onClick={this.incrementNumberOfIndents}>+</Button>
-          <Button onClick={this.decrementNumberOfIndents}>-</Button>
+          <NumericInput min={0} onChange={this.handleNumberOfIndentsChange} value={this.state.numberOfIndents} />
           <Button onClick={this.selectSpaces} selected={this.state.indentType === whitespaceType.space}>Spaces</Button>
           <Button onClick={this.selectTabs} selected={this.state.indentType === whitespaceType.tab}>Tabs</Button>
           
